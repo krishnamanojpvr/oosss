@@ -5,7 +5,7 @@
 #include <stdlib.h>
 int main()
 {
-    int pid;      // process id
+    pid_t pid;      // process id
     pid = fork(); // create another process
     if (pid < 0)
     {
@@ -19,8 +19,11 @@ int main()
     else
     { 
         // parent
-        wait(NULL); // wait for child
-        printf("\nchild complete\n");
+        printf("Parent Waiting for child to complete!!");
+        pid_t childpid;
+        childpid = wait(NULL); // wait for child
+        printf("\nchild complete, PID -> %d\n",childpid);
+        printf("Parent complete, PID -> %d",getpid());
         exit(0);
     }
 }
