@@ -9,7 +9,7 @@
 void deposit(int *balance , int amount){
     *balance += amount;
     printf("Depositing %d to account\n",amount);
-    printf("New balance after withdrawal: %d\n",*balance);
+    printf("New balance after depositing: %d\n",*balance);
 
 }
 
@@ -58,6 +58,7 @@ int main()
     }
     else if (pid>0)
     {   
+        // wait(NULL); // only use this line if you want child to finish before parent
         sem_wait(&mutex);
         int amt = 200;
         withdraw(initialBalance,amt);

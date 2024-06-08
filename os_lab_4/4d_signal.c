@@ -23,14 +23,14 @@ int main(){
         sleep(2);
         if(kill(pid,SIGSTOP)==-1){
              perror("Failed to suspend child process");
-            exit(EXIT_FAILURE);
+            exit(1);
         }
 
         printf("Parent has suspended the child process\n");
         sleep(2);
         if(kill(pid,SIGCONT)==-1){
             perror("Failed to resume child process");
-            exit(EXIT_FAILURE);
+            exit(1);
         }
 
         printf("Parent has resumed the child process\n");
