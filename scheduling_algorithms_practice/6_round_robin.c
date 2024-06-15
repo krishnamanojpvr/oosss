@@ -53,7 +53,7 @@ int main() {
                 }
             }
             continue;
-        }
+        }   
 
         int currentProcess = dequeue(queue, &queueSize, &queueCapacity, &front, &rear);
 

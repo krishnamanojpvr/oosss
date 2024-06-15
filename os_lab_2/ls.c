@@ -1,29 +1,25 @@
 #include <stdio.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <stdlib.h>
-int main()
-{
-    pid_t pid;      // process id
-    pid = fork(); // create another process
-    if (pid < 0)
-    {
-        printf("\nFork failed\n");
-        exit(-1);
+#include <dirent.h>
+
+int main(int argc, char *argv[]) {
+    // Check if a directory was provided as an argument
+    const char *dir_path = (argc > 1) ? argv[1] : ".";
+
+    // Open the directory
+    DIR *dir = opendir(dir_path);
+    if (dir == NULL) {
+        perror("opendir");
+        return 1;
     }
-    else if (pid == 0)
-    {                                            // child
-        execlp("/bin/ls", "ls", "-l", NULL); // execute ls
+
+    // Read directory entries
+    struct dirent *entry;
+    while ((entry = readdir(dir)) != NULL) {
+        printf("%s\n", entry->d_name);
     }
-    else
-    { 
-        // parent
-        printf("Parent Waiting for child to complete!!");
-        pid_t childpid;
-        childpid = wait(NULL); // wait for child
-        printf("\nchild complete, PID -> %d\n",childpid);
-        printf("Parent complete, PID -> %d",getpid());
-        exit(0);
-    }
+
+    // Close the directory
+    closedir(dir);
+
+    return 0;
 }
