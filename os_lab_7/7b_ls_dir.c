@@ -28,13 +28,6 @@ int main(int argc, char *argv[])
         {
             continue;
         }
-        char path[1024];
-        snprintf(path, sizeof(path), "%s/%s", argv[1], entry->d_name);
-        if (stat(path, &file_stat) == -1)
-        {
-            perror("Error stat");
-            continue;
-        }
         printf("Inode: %lu\t File: %s\n", file_stat.st_ino, entry->d_name);
     }
     closedir(dir);
