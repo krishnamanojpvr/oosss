@@ -1,13 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 #define PAGE_SIZE 1024
 #define NUM_PAGES 32
 #define MEMORY_SIZE (PAGE_SIZE * NUM_PAGES)
-
-
 char physical_memory[MEMORY_SIZE];
-
 
 void initialize_memory()
 {
