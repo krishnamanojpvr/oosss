@@ -3,8 +3,7 @@
 
 int main(int argc, char *argv[])
 {
-    const char *dir_path = (argc > 1) ? argv[1] : ".";
-    DIR *dir = opendir(dir_path);
+    DIR *dir = opendir(argc < 2 ? "." : argv[1]);
     if (dir == NULL)
     {
         perror("opendir");
