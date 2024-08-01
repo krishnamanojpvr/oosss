@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
-int main(int argc, char *argv[3])
+int main(int argc, char *argv[])
 {
     int fd, i;
     char buf[2];
