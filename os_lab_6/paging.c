@@ -13,8 +13,9 @@ void initialize_memory()
     }
 }
 
-void page_fault(int page_number)
+void page_fault(int address)
 {
+    int page_number = address / PAGE_SIZE;
     printf("Page fault occurred for page %d\n", page_number);
     printf("Loading page %d into physical memory...\n", page_number);
     for (int i = page_number * PAGE_SIZE; i < (page_number + 1) * PAGE_SIZE; ++i)
@@ -25,12 +26,12 @@ void page_fault(int page_number)
 
 void access_memory(int address)
 {
-    int page_number = address / PAGE_SIZE;
     if (physical_memory[address] == 0)
     {
-        page_fault(page_number);
+        page_fault(address);
     }
     printf("Accessing memory location %d: Value = %d\n", address, physical_memory[address]);
+    printf("\n");
 }
 
 int main()
